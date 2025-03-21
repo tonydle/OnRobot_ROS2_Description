@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://wiki.ros.org/xacro">
+
+    <!-- Include the macro file for the specific OnRobot model -->
+    <xacro:macro name="onrobot" params="onrobot_type prefix">
+        
+        <xacro:property name="onrobot_type" value="$(arg onrobot_type)"/>
+        <xacro:if value="${onrobot_type == 'rg2'}">
+            <xacro:include filename="$(find onrobot_description)/urdf/rg2_macro.xacro"/>
+            <xacro:onrobot_rg2 prefix="${prefix}"/>
+        </xacro:if>
+        <xacro:if value="${onrobot_type == 'rg6'}">
+            <xacro:include filename="$(find onrobot_description)/urdf/rg6_macro.xacro"/>
+            <xacro:onrobot_rg6 prefix="${prefix}"/>
+        </xacro:if>
+
+    </xacro:macro>
+</robot>

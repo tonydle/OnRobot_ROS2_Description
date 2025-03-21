@@ -3,10 +3,10 @@
 
   <!-- Define RG type -->
   <xacro:arg name="type" default="rg2" />
-  <xacro:property name="onrobot_type" value="$(arg type)" />
+  <xacro:property name="type" value="$(arg type)" />
 
   <xacro:macro name="onrobot_base_link" params="prefix">
-    <xacro:if value="${onrobot_type == 'rg2'}">
+    <xacro:if value="${type == 'rg2'}">
       <xacro:property name="mass" value="0.78" />
       <xacro:property name="ixx" value="1.0E-03" />
       <xacro:property name="ixy" value="1.0E-06" />
@@ -15,7 +15,7 @@
       <xacro:property name="iyz" value="1.0E-06" />
       <xacro:property name="izz" value="1.0E-03" />
     </xacro:if>
-    <xacro:if value="${onrobot_type == 'rg6'}">
+    <xacro:if value="${type == 'rg6'}">
       <xacro:property name="mass" value="1.25" />
       <xacro:property name="ixx" value="1.0E-03" />
       <xacro:property name="ixy" value="1.0E-06" />
@@ -34,7 +34,7 @@
       <visual>
         <origin xyz="0 0 0" rpy="0 0 0" />
         <geometry>
-          <mesh filename="package://onrobot_description/meshes/${onrobot_type}/visual/base_link.stl" />
+          <mesh filename="package://onrobot_description/meshes/${type}/visual/base_link.stl" />
         </geometry>
         <material name="">
           <color rgba="0.8 0.8 0.8 1" />
@@ -43,7 +43,7 @@
       <collision>
         <origin xyz="0 0 0" rpy="0 0 0" />
         <geometry>
-          <mesh filename="package://onrobot_description/meshes/${onrobot_type}/collision/base_link.stl" />
+          <mesh filename="package://onrobot_description/meshes/${type}/collision/base_link.stl" />
         </geometry>
       </collision>
     </link>
@@ -66,7 +66,7 @@
       <visual>
         <origin xyz="0 0 0" rpy="0 0 0" />
         <geometry>
-          <mesh filename="package://onrobot_description/meshes/${onrobot_type}/visual/outer_knuckle.stl" />
+          <mesh filename="package://onrobot_description/meshes/${type}/visual/outer_knuckle.stl" />
         </geometry>
         <material name="">
           <color rgba="0.8 0.8 0.8 1" />
@@ -75,7 +75,7 @@
       <collision>
         <origin xyz="0 0 0" rpy="0 0 0" />
         <geometry>
-          <mesh filename="package://onrobot_description/meshes/${onrobot_type}/collision/outer_knuckle.stl" />
+          <mesh filename="package://onrobot_description/meshes/${type}/collision/outer_knuckle.stl" />
         </geometry>
       </collision>
     </link>
@@ -98,7 +98,7 @@
       <visual>
         <origin xyz="0 0 0" rpy="0 0 0" />
         <geometry>
-          <mesh filename="package://onrobot_description/meshes/${onrobot_type}/visual/inner_knuckle.stl" />
+          <mesh filename="package://onrobot_description/meshes/${type}/visual/inner_knuckle.stl" />
         </geometry>
         <material name="">
           <color rgba="0.8 0.8 0.8 1" />
@@ -107,7 +107,7 @@
       <collision>
         <origin xyz="0 0 0" rpy="0 0 0" />
         <geometry>
-          <mesh filename="package://onrobot_description/meshes/${onrobot_type}/collision/inner_knuckle.stl" />
+          <mesh filename="package://onrobot_description/meshes/${type}/collision/inner_knuckle.stl" />
         </geometry>
       </collision>
     </link>
@@ -130,7 +130,7 @@
       <visual>
         <origin xyz="0 0 0" rpy="0 0 0" />
         <geometry>
-          <mesh filename="package://onrobot_description/meshes/${onrobot_type}/visual/inner_finger.stl" />
+          <mesh filename="package://onrobot_description/meshes/${type}/visual/inner_finger.stl" />
         </geometry>
         <material name="">
           <color rgba="0.1 0.1 0.1 1" />
@@ -139,7 +139,7 @@
       <collision>
         <origin xyz="0 0 0" rpy="0 0 0" />
         <geometry>
-          <mesh filename="package://onrobot_description/meshes/${onrobot_type}/collision/inner_finger.stl" />
+          <mesh filename="package://onrobot_description/meshes/${type}/collision/inner_finger.stl" />
         </geometry>
       </collision>
     </link>

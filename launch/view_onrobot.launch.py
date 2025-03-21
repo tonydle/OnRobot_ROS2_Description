@@ -1,7 +1,12 @@
 #!/usr/bin/env python3
 """
-A launch file to visualize the OnRobot URDF.
-It selects the proper top-level xacro file based on the onrobot_type argument.
+Filename: view_onrobot.launch.py
+Author: Tony Le
+Description: 
+    A launch file to visualise the OnRobot URDF.
+
+License: MIT License
+Contact: tonyle98@outlook.com
 """
 
 from launch import LaunchDescription
@@ -12,14 +17,10 @@ from launch_ros.parameter_descriptions import ParameterValue
 from launch_ros.substitutions import FindPackageShare
 
 def launch_setup(context, *args, **kwargs):
-    # Get evaluated value of onrobot_type
-    onrobot_type_val = LaunchConfiguration("onrobot_type").perform(context)
-    if onrobot_type_val == "rg6":
-        description_file = "rg6.urdf.xacro"
-    else:
-        description_file = "rg2.urdf.xacro"
+    description_file = "onrobot.urdf.xacro"
     
     description_package = LaunchConfiguration("description_package")
+    onrobot_type = LaunchConfiguration("onrobot_type")
     prefix = LaunchConfiguration("prefix")
 
     robot_description_content = Command(
@@ -28,11 +29,14 @@ def launch_setup(context, *args, **kwargs):
             " ",
             PathJoinSubstitution([FindPackageShare(description_package), "urdf", description_file]),
             " ",
-            "name:=",
-            "onrobot",
+            "onrobot_type:=",
+            onrobot_type,
             " ",
             "prefix:=",
             prefix,
+            " ",
+            "name:=",
+            "onrobot",
         ]
     )
     robot_description = {

@@ -66,7 +66,7 @@
       <parent link="${prefix}left_finger_tip" />
       <child link="${prefix}right_finger_tip" />
       <axis xyz="0 -1 0" />
-      <limit lower="0" upper="0.160" velocity="100.0" effort="1000" />
+      <limit lower="0" upper="0.160" velocity="0.160" effort="120" />
     </joint>
 
     <joint name="${prefix}tcp_joint" type="fixed">
