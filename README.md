@@ -23,7 +23,7 @@ This package provides a ROS2 URDF description for OnRobot grippers. It uses XACR
 ## Quick Test
 To quickly test the visualisation of the OnRobot gripper model, run the provided launch file:
 ```sh
-ros2 launch onrobot_description view_onrobot_gripper.launch.py onrobot_type:=rg2
+ros2 launch onrobot_description view_onrobot.launch.py onrobot_type:=rg2
 ``` 
 This launches RViz2 with the URDF loaded.
 
