@@ -5,12 +5,14 @@
     <xacro:arg name="prefix" default=""/>
     <xacro:arg name="name" default="onrobot"/>
     <xacro:arg name="sim_gazebo" default="false"/>
+    <xacro:arg name="use_fake_hardware" default="false"/>
 
     <!-- Import the OnRobot macro -->
     <xacro:include filename="$(find onrobot_description)/urdf/onrobot_macro.xacro"/>
 
     <!-- Create OnRobot instance -->
-    <xacro:onrobot onrobot_type="$(arg onrobot_type)" prefix="$(arg prefix)"/>
+    <xacro:onrobot onrobot_type="$(arg onrobot_type)" prefix="$(arg prefix)"
+        sim_gazebo="$(arg sim_gazebo)" use_fake_hardware="$(arg use_fake_hardware)"/>
     
     <!-- Create link fixed to the world -->
     <link name="world" />
@@ -19,9 +21,4 @@
         <parent link="world"/>
         <child link="$(arg prefix)onrobot_base_link"/>
     </joint>
-
-    <!-- Optional Gazebo plugin if simulation is enabled -->
-    <xacro:if value="$(arg sim_gazebo)">
-        <xacro:gazebo_plugin prefix="$(arg prefix)"/>
-    </xacro:if>
 </robot>
