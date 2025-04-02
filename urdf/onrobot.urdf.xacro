@@ -6,13 +6,25 @@
     <xacro:arg name="name" default="onrobot"/>
     <xacro:arg name="sim_gazebo" default="false"/>
     <xacro:arg name="use_fake_hardware" default="false"/>
+    <xacro:arg name="connection_type" default="serial"/>
+    <xacro:arg name="device" default="/tmp/ttyUR"/>
+    <xacro:arg name="ip_address" default="192.168.1.1"/>
+    <xacro:arg name="port" default="502"/>
 
     <!-- Import the OnRobot macro -->
     <xacro:include filename="$(find onrobot_description)/urdf/onrobot_macro.xacro"/>
 
     <!-- Create OnRobot instance -->
-    <xacro:onrobot onrobot_type="$(arg onrobot_type)" prefix="$(arg prefix)"
-        sim_gazebo="$(arg sim_gazebo)" use_fake_hardware="$(arg use_fake_hardware)"/>
+    <xacro:onrobot
+        onrobot_type="$(arg onrobot_type)"
+        prefix="$(arg prefix)"
+        sim_gazebo="$(arg sim_gazebo)"
+        use_fake_hardware="$(arg use_fake_hardware)"
+        connection_type="$(arg connection_type)"
+        device="$(arg device)"
+        ip_address="$(arg ip_address)"
+        port="$(arg port)"
+    />
     
     <!-- Create link fixed to the world -->
     <link name="world" />

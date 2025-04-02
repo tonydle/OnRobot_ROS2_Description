@@ -2,8 +2,18 @@
 <robot xmlns:xacro="http://wiki.ros.org/xacro">
 
     <!-- Include the macro file for the specific OnRobot model -->
-    <xacro:macro name="onrobot" params="onrobot_type prefix sim_gazebo use_fake_hardware">
-        
+    <xacro:macro name="onrobot"
+        params="
+        onrobot_type
+        prefix:=''
+        sim_gazebo:=false
+        use_fake_hardware:=false
+        connection_type:=serial
+        device:=/tmp/ttyUR
+        ip_address:=192.168.1.1
+        port:=502
+        ">
+
         <xacro:property name="onrobot_type" value="$(arg onrobot_type)"/>
         <xacro:if value="${onrobot_type == 'rg2'}">
             <xacro:include filename="$(find onrobot_description)/urdf/rg2_macro.xacro"/>
@@ -31,11 +41,17 @@
                     <plugin>mock_components/GenericSystem</plugin>
                     <param name="calculate_dynamics">false</param>
                 </xacro:if>
-                <xacro:unless value="${sim_gazebo}">
+                <xacro:unless value="${sim_gazebo or use_fake_hardware}">
                     <plugin>onrobot_driver/RGHardwareInterface</plugin>
+                    <param name="onrobot_type">${onrobot_type}</param>
+                    <param name="prefix">${prefix}</param>
+                    <param name="connection_type">${connection_type}</param>
+                    <param name="device">${device}</param>
+                    <param name="ip_address">${ip_address}</param>
+                    <param name="port">${port}</param>
                 </xacro:unless>
             </hardware>
-            <joint name="finger_width">
+            <joint name="${prefix}finger_width">
                 <command_interface name="position"/>
                 <state_interface name="position"/>
             </joint>
