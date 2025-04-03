@@ -22,6 +22,7 @@ def launch_setup(context, *args, **kwargs):
     description_package = LaunchConfiguration("description_package")
     onrobot_type = LaunchConfiguration("onrobot_type")
     prefix = LaunchConfiguration("prefix")
+    ns = LaunchConfiguration("ns")
 
     robot_description_content = Command(
         [
@@ -48,18 +49,21 @@ def launch_setup(context, *args, **kwargs):
     )
 
     joint_state_publisher_node = Node(
+        namespace=ns,
         package="joint_state_publisher_gui",
         executable="joint_state_publisher_gui",
         name="joint_state_publisher_gui",
         output="screen",
     )
     robot_state_publisher_node = Node(
+        namespace=ns,
         package="robot_state_publisher",
         executable="robot_state_publisher",
         output="both",
         parameters=[robot_description],
     )
     rviz_node = Node(
+        namespace=ns,
         package="rviz2",
         executable="rviz2",
         name="rviz2",
@@ -91,6 +95,13 @@ def generate_launch_description():
             "prefix",
             default_value='""',
             description="Prefix for joint names (useful for multi-robot setups)."
+        )
+    )
+    declared_arguments.append(
+        DeclareLaunchArgument(
+            "ns",
+            default_value="onrobot",
+            description="Namespace for the nodes. Useful for separate gripper and robot control setups."
         )
     )
     
