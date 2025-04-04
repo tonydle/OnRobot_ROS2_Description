@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <robot xmlns:xacro="http://ros.org/wiki/xacro">
 
-  <xacro:arg name="type" default="rg6" />
+  <xacro:property name="onrobot_type" value="rg6" />
   <xacro:include filename="$(find onrobot_description)/urdf/inc/rg_common.xacro" />
 
   <xacro:macro name="inner_knuckle_joint" params="prefix fingerprefix reflect">

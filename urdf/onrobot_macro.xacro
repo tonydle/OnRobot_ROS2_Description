@@ -14,7 +14,6 @@
         port:=502
         ">
 
-        <xacro:property name="onrobot_type" value="$(arg onrobot_type)"/>
         <xacro:if value="${onrobot_type == 'rg2'}">
             <xacro:include filename="$(find onrobot_description)/urdf/rg2_macro.xacro"/>
             <xacro:onrobot_rg2 prefix="${prefix}"/>
@@ -25,7 +24,7 @@
         </xacro:if>
 
         <!-- Enable the gazebo plugin for simulation -->
-        <xacro:if value="$(arg sim_gazebo)">
+        <xacro:if value="${sim_gazebo}">
             <gazebo>
                 <plugin filename="libgazebo_ros2_control.so" name="gazebo_ros2_control"/>
             </gazebo>
